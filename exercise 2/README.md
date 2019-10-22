@@ -35,7 +35,7 @@ typedef struct\
 {\
 message_header header;\
 char data[MAX_DATA_SIZE];\
-}message;\
+}message;
 
 MAX_DATA_SIZE is defined by:\
 #define CHUNK 4096\
@@ -47,7 +47,7 @@ typedef struct\
 {\
 short opcode;\
 short length;\
-}message_header;\
+}message_header;
 
 The possible values of the field "opcode" of the struct "message_header" are defined in the following enum:\
 typedef enum\
@@ -67,4 +67,4 @@ FILE_CONTENT = 0x0B,\
 USERS_ONLINE = 0x0C,\
 SEND_MESSAGE = 0x0D,\
 READ_MESSAGES = 0x0E\
-} opcode;\
+} opcode;
