@@ -1,5 +1,5 @@
 # file_client:
-A simple file client that can connect a user secured by a password to a running instance of file_server and upload/download files to/from the server, delete files that have been uploaded by the user to the server, and print a list of the user’s files that are currently on the server.
+A file client that can connect a user secured by a password to a running instance of file_server and upload/download files to/from the server, delete files that have been uploaded by the user to the server, and print a list of the user’s files that are currently on the server.
 The client also allows the user to get a list of all the users that are currently connected to the server, send messages to other users and get messages from them, and read messages received from other users while offline.
 Run the program by: file_client [hostname [port_number]]
 Upon successful connection the user of the client is prompted for a username and password, and if authentication is successful, the user of the client can use the following commands:
@@ -22,46 +22,8 @@ Prints to the user’s console all the messages that were sent to him while he w
 Disconnects from the server
 
 # file_server:
-A simple file server that supports file_client.
+A file server that supports file_client.
 Run the program by: file_server <path_to_users_file> <path_to_data_directory> [port]
 Upon activation, the server reads and stores the data from the ‘users’ file and prepares the users' directories. 
 Then it proceeds to listen to new incoming connections, to authentication requests from those connections and to 
 instructions from already connected clients.
-
-# Communication protocol:
-Definitions:
-After connection is established, all communication between client and server is done by the "message" struct:
-typedef struct
-{
-message_header header;
-char data[MAX_DATA_SIZE];
-}message;
-MAX_DATA_SIZE is defined by:
-#define CHUNK 4096
-#define HEADER_SIZE (sizeof(message_header))
-#define MAX_DATA_SIZE (CHUNK - HEADER_SIZE)
-The struct "message_header" is defined by:
-typedef struct
-{
-short opcode;
-short length;
-}message_header;
-The possible values of the field "opcode" of the struct "message_header" are defined in the following enum:
-typedef enum
-{
-WELCOME = 0x00,
-LIST_OF_FILES = 0x01,
-DELETE_FILE = 0x02,
-ADD_FILE = 0x03,
-GETFILE = 0x04,
-QUIT = 0x05,
-USER_NAME = 0x06,
-USER_PASSWORD = 0x07,
-AUTHORIZATION_SUCCESS = 0x08,
-END_LIST_OF_FILES = 0x09,
-FILE_END = 0x0A,
-FILE_CONTENT = 0x0B,
-USERS_ONLINE = 0x0C,
-SEND_MESSAGE = 0x0D,
-READ_MESSAGES = 0x0E
-} opcode;
