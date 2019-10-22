@@ -24,3 +24,12 @@ Run the program by: file_server <path_to_users_file> <path_to_data_directory> [p
 Upon activation, the server reads and stores the data from the users file and prepares the users' 
 directories. Then it proceeds to listen to incoming connections from clients. After a client has disconnected, 
 the server proceeds to listen to the next incoming client connection.
+
+# Communication protocol:
+Definitions:
+After connection is established, all communication between client and server is done by the "message" struct:
+typedef struct
+{
+message_header header;
+char data[MAX_DATA_SIZE];
+}message;
