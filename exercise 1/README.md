@@ -26,10 +26,10 @@ directories. Then it proceeds to listen to incoming connections from clients. Af
 the server proceeds to listen to the next incoming client connection.
 
 # Communication protocol:
-Definitions:
-After connection is established, all communication between client and server is done by the "message" struct:
-typedef struct
-{
-message_header header;
-char data[MAX_DATA_SIZE];
-}message;
+Definitions:\
+After connection is established, all communication between client and server is done by the "message" struct:\
+typedef struct\
+{\
+message_header header;\
+char data[MAX_DATA_SIZE];\
+}message;\
